@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+	<article>
+		<div class="starter-template">
+			<h1><a class="article-title" href="{{ url_for('New_tasks', tasks=tasks) }}">ADD A TODO TO DO</a></h1>
+		</div>
+	</article>
+</div>
+	{% for task in tasks %}
+	    <article class="media content-section">
+	    	<div class="media-body">
+	    		<div class="article-metadata">
+	    			<a class="mr-2" href="#">Posted on - {{ task.date_posted.strftime('%Y-%m-%d') }}</a>
+	    			<a class="mr-2" href="#">Due on - {{ task.date_due.strftime('%Y-%m-%d') }}</a>
+	    			<a class="mr-2" href="#">Time:  {{ task.time.strftime('%H:%M') }}</a>
+	    		</div>
+			    <h2><a class="article-title" href="{{ url_for('task', task_id=task.id) }}">{{ task.title }}</a></h2>
+			    <p class="article-content">{{ task.description }}</p>
+	        	</div>
+	    </article>
+	{% endfor %}
+{% endblock content %}

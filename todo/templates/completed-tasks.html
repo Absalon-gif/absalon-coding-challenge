@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>Completed Tasks</h1>
+	    {% for task in tasks %}
+	    	<article class="media content-section">
+		    	<div class="media-body">
+		    		<div class="article-metadata">
+		   				<a class="mr-2" href="#">Posted on - {{ task.date_posted.strftime('%Y-%m-%d') }}</a>
+		   				<a class="mr-2" href="#">Due on - {{ task.date_due.strftime('%Y-%m-%d') }}</a>
+		   				<a class="mr-2" href="#">Time:  {{ task.time.strftime('%H:%M') }}</a>
+		   			</div>
+			        <h2><a class="article-title">{{ task.title }}</a></h2>
+			        <p class="article-content">{{ task.description }}</p>
+		    	</div>
+		    	<div>
+		    		<a class="btn btn-primary btn-sm" href="{{ url_for('removed_task', task_id=task.id) }}">Remove Task</a>
+		    	</div>
+	        </article>
+	    {% endfor %}
+{% endblock content %}
+
